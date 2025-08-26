@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loan Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ 
+<nav class="navbar" style="background-color: #f3f4f4; outline-style: solid; outline-color: #d1cfcd;  outline-width: 1px; border-radius: 5px; margin-left: 220px; margin-top: 10px; margin-right: 10px;">
+  <div class="container-fluid">
+    <a class="navbar-brand">Loan Management System</a>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+<div class="card mb-3" style="position:absolute; top:0; width: 200px; margin-top: 10px; margin-left: 5px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img th:src="*{'data:image/jpeg;base64,'+{profile_pic}}" onerror="this.src='/img/profile.jpg'" class="img-fluid rounded-start" alt="No Found">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h6 class="card-title" th:utext="${session_name}"></h6>       
+        <p class="card-text"><small class="text-body-secondary" th:utext="${acc_type}"></small></p>   
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist" style="margin-left:5px; width: 200px; position:absolute; top:130px;">
+      <a class="list-group-item list-group-item-action"  th:href="@{/adminHomeTab}">Home</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/agentTab}">Agent</a>
+      <a class="list-group-item list-group-item-action active" th:href="@{/custTab}">Customer</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/ekycTab}">e-KYC</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/appliedLoan}">Loans</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/transReport}">Transactions</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/walletBal}">Wallet</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/alerts}">Alerts</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/updateProfile}">Profile</a>
+      <a class="list-group-item list-group-item-action" th:href="@{/logout}">Logout</a>
+      
+    </div>
+  </div>
+</div>
+
+
+<div style=" margin-left: 300px; margin-top: 70px; ">
+<form th:action="@{/customer/edit/{id}(id=${customer.id})}" th:object="${customer}" method="post" enctype="multipart/form-data">
+
+	  <div>
+	  	<h4>Edit Customer</h4>
+	  </div><br>
+	     <input type="hidden" th:field="*{id}"/>
+	     <input type="hidden" th:field="*{kycst}"/>
+	     <input type="hidden" th:field="*{rejrs}"/>
+	     	
+     
+ <div class="col-5">
+        <input class="form-control" type="text" id="name" name="name" th:field="*{name}" placeholder="Enter Name" required>
+      </div><br>
+      <div class="col-5">
+        <input class="form-control" type="text" id="email" name="email" th:field="*{email}" placeholder="Enter Email" required>
+      </div><br>
+      <div class="col-5">
+        <input class="form-control" type="text" id="phone" name="phone" th:field="*{phone}" placeholder="Enter Phone No" required>
+      </div><br>
+      <div class="col-5">
+        <input class="form-control" type="date" id="dob" name="dob" th:field="*{dob}" placeholder="Enter DoB" required>
+      </div><br>
+     <div class="col-5">
+        <input class="form-control" type="text" id="address" name="address" th:field="*{address}" placeholder="Enter Address" required>
+      </div><br>
+  <div class="form-check">
+  <input class="form-check-input" type="radio" name="gender" th:field="*{gender}" id="male" value="male" checked>
+  <label class="form-check-label" for="male">
+    Male
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="gender" th:field="*{gender}" id="female" value="female">
+  <label class="form-check-label" for="female">
+   	Female
+  </label>
+</div><br>
+<div style="width: 380px;">
+<div class="mb-3">
+  <label for="formFile" class="form-label">Upload Aadhaar</label>
+  <input class="form-control" type="file" name="customer"  id="aadhaar">
+</div>
+<div class="mb-3">
+  <label for="formFile" class="form-label">Upload PAN</label>
+  <input class="form-control" type="file" name="customer"  id="pan">
+</div>
+<div class="mb-3">
+  <label for="formFile" class="form-label">Upload Photo</label>
+  <input class="form-control" type="file" name="customer" id="photo">
+</div>
+</div>
+	      
+      <br>
+      <div class="input-box button">
+        <input class="btn btn-primary" type="Submit" value="Update Customer">
+      </div>
+</form>
+</div>
+<br>
+
+  </body>
+</html>
