@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Loan Management System </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+    
+    </script>
+   </head>
+<body>
+<div>
+	<h1 style="color:white;">Loan Management System</h1>
+	</div>
+
+  <div class="wrapper">
+    <h2>Registration</h2>
+    <form th:action="@{/adminRegister}" th:object="${admin}" method="post">
+      <div class="input-box">
+        <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+      </div>
+      <div class="input-box">
+        <input type="text" id="email" name="email" placeholder="Enter Your Email" required>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" th:name="password" placeholder="Create Password" required>
+      </div>
+      <div class="input-box">
+        <input type="password" placeholder="Confirm Password" th:name="password2" required>
+      </div>
+      <div class="policy">
+        <input type="checkbox">
+        <h3>I accept all terms & condition</h3>
+      </div>
+      <p  style="color: red" th:utext="${successMessage}"></p>
+      <div class="input-box button">
+        <input type="Submit" value="Register Now">
+      </div>
+      <div class="text">
+        <h3>Already have an account? <a th:href="@{/adminLoginPage}">Login now</a></h3>
+      </div>
+    
+    </form>
+  </div>
+
+
+
+</body>
+</html>
